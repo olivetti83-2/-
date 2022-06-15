@@ -12,7 +12,7 @@ public class BasicApplicationTests {
 	@Test
 	public void contextLoads() {
 		String message="Aloha!!!!!!!!!!!!!!!!!";
-		Assert.assertNotNull(message)
+		Assert.assertNotNull(message);
 	}
 
 }
