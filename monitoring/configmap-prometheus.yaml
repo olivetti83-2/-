@@ -7,7 +7,7 @@ metadata:
   namespace: monitoring
 data:
   prometheus.rules: |-
-# SE DEFINE UNA REGLA DE USO DE MEMORIA
+# SE DEFINE UNA REGLA DE USO DE MEMORIA, ESTRUCTURA MÍNIMA
     groups:    
     - name: Pod Memory Usage
       rules:
@@ -20,7 +20,7 @@ data:
           summary: High Memory Usage
   prometheus.yml: |-
 
-# AQUÍ DEFINIMOS EL INTERVALO CADA 5 SEGUNDOS Y SE MANDAN AL ALERT MANAGER AL PUERTO 9093
+# AQUÍ DEFINIMOS EL INTERVALO CADA 5 SEGUNDOS Y SE MANDAN AL ALERT MANAGER AL PUERTO 9093, CONF GLOBAL
     global:
       scrape_interval: 5s
       evaluation_interval: 5s
@@ -97,7 +97,7 @@ data:
           target_label: __metrics_path__
           replacement: /api/v1/nodes/${1}/proxy/metrics
 
-#SE ENCARGA DE RECOPILAR LA INFO DE LOS PODS
+#SE ENCARGA DE RECOPILAR LA INFO DE LOS PODS, CONF ESTANDAR 
       - job_name: 'k8-pods'
 
         kubernetes_sd_configs:
