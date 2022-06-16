@@ -1,7 +1,7 @@
 #Imagen inicial de la que se partimos
 FROM nginx:alpine
 
-#Actualiza sourcelist e Instalamos Java 8
+#Actualiza e Instalamos Java 8
 RUN apk -U add openjdk8 \
     && rm -rf /var/cache/apk/*;
 RUN apk add ttf-dejavu

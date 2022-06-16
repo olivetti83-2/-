@@ -1,3 +1,7 @@
+#ASIGNAMOS LABEL A TODOS LOS PODS QUE SE CREEN, EN ESTE CASO UNO
+#DEFINO CONTENEDOR, LA IMAGEN DE LA QUE PARTE, PUERTOS (EL QUE VIENE POR DEFECTO)
+#REFERENCIA EN LAS VARIABLES AL SECRET-DEV
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5,16 +9,12 @@ metadata:
   labels:
     app: postgres
 spec:
-#Pods number replicates
   replicas: 1
-  #Define how the Deployment identify the pods that it could manage
   selector: 
     matchLabels:
      app: postgres
-     #pod template specification
   template:
     metadata:
-    #define teh labels for all pods
       labels:
         app: postgres       
     spec:
@@ -22,15 +22,16 @@ spec:
         - name: postgres
           image: postgres:latest
           imagePullPolicy: IfNotPresent
-          #open the port to allow send and receive traffic in teh container
           ports:
             - containerPort: 5432
-            #read envars from secret file
           envFrom:
             - secretRef:
                 name: postgres-secret
+#VOLUMENES, UTILIZA RUTA POR DEFECTO, DEFINO DOS, EL DE LOS DATOS DE LA BBDD
+#Y EL DEL SCRIPT QUE SE DEFINE EN EL CONFIGMAP
+#EL PRIMER VOLUMEN VARIABLE Y SE DEFINE EL CLAIM QUE ES COMO EL "DISCO DURO"
+#SE DAN 5 GIGAS Y TIENE 2  PARA ASIGNAR AL MOTOR DE DATOS POSTGRES
           volumeMounts:
-          #This is the path in the container on which the mounting will take place.
             - mountPath: /var/lib/postgresql/data
               name: postgredb
             - mountPath: /docker-entrypoint-initdb.d

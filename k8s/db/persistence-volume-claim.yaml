@@ -1,4 +1,5 @@
-#it is a reques of resource (persistence volume) from a pod by example, teh pod claim by a storage throug PVC
+#LA PARTE IMPORTANTE ES LA DEFINICION DONDE SE DICE QUE LA PETICIÓN TOMA DOS GIGAS
+#Y QUE VA A TENER ACCESO DE LECTURA Y ESCRITURA DESDE LOS PODS
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:

@@ -1,0 +1,34 @@
+#CONFIGURACIÓN, DEFINIMOS METADATA, QUE CREE AUTOMATICAMENTE EL YAML DE ALERT MANAGER QUE ES EL
+#QUE VA A TENER LA CONFIGURACIÓN Y TAMBIÉN DEFINIMOS CANAL DE SLACK
+#LA ALERTA ESTÁ EN CONFIGMAP-PROMETHEUS, AQUI DEFINIMOS COMO PROCEDE CUANDO LE LLEGUEN LAS ALERTAS
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alertmanager-conf
+  namespace: monitoring
+data:
+  alertmanager.yml: |-
+    global:
+      resolve_timeout: 5m
+      slack_api_url: 'https://hooks.slack.com/services/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'
+
+    route:
+      group_by: ['alertname', 'priority']
+      group_wait: 30s
+      group_interval: 1m
+      repeat_interval: 1m
+      receiver: default-receiver
+      routes:
+      - match:
+          severity: slack
+        receiver: default-receiver
+      - match: 
+          severity: warning
+        receiver: default-receiver
+    receivers:
+    - name: default-receiver
+      slack_configs:
+        - send_resolved: true
+          channel: '#prometheus'
+          text: '{{ template "slack.default.text" . }}'
+          title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
