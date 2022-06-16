@@ -28,6 +28,8 @@ Subir las imagenes a docker hub
 
 Montar servicio de bbdd
 
+kubectl apply -f ./ (desde la carpeta `cd /k8s/db`)
+
 pgAdmin:
 ip minikube (minikube ip) y puerto 30200
 New server:
@@ -43,5 +45,8 @@ Creamos otro server, ahora nos vamos a conectar a la base de datos que hemos cre
         Usaremos la Ip del servicio y el puerto interno 
         Nombre DB, Usuario y Password (configmap-postgres-initbd.yaml) 
 
-
-
+jenkins:
+pom.xml - primero se ha creado un pipeline con maven y github para descargar github en jenkins
+ngrok - configuramos el webhook y garantizamos el funcisonamiento de este proxy porque que nuestro repositorio que está en internet a través del puerto configurado nos envíe mensajes a nuestra máquina local cada vez que se haga un push
+pipeline jenkins basado en el webhook configurado anterior.
+Se crea un pipeline para que de manera automática cada vez que hacemos un cambio o hacemos un push a nuestro repositorio se envíe un evento y ese evento sea capaz de disparar ese pipeline que tenemos construído.
