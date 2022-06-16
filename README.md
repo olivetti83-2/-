@@ -8,7 +8,7 @@ Imagenes desde local: Dentro del repositorio Poner el engine del docker hacia el
 
 generar imagen backend - desde donde esté el jar docker build -t facturacionapp-back --no-cache --build-arg JAR_FILE=./*.jar .
 
-generar imagen frontend - desde donde esté el jar docker build -t oliverp83/facturacionapp-front --no-cache .
+generar imagen frontend - desde la carpeta src/angular docker build -t oliverp83/facturacionapp-front --no-cache .
 
 Subir las imagenes a docker hub
 
@@ -19,9 +19,8 @@ kubectl apply -f ./ (desde la carpeta cd /k8s/db)
 pgAdmin: ip minikube (minikube ip) y puerto 30200 New server: General Ponemos un nombre: posgresService Connection Ponemos la ip de minikube y el puerto 30200 Nombre DB, Usuario y Password (secret-dev.yaml - codificado en base64 - descodificar: echo "valor" | base64 -d) Creamos otro server, ahora nos vamos a conectar a la base de datos que hemos creado en el configmap-postgres-initbd.yaml General Ponemos un nombre: posgresPod (esta conexión es opcional, es por si alguien no quiere acceder a través de pgAdmin) Connection Usaremos la Ip del servicio y el puerto interno Nombre DB, Usuario y Password (configmap-postgres-initbd.yaml)
 
 jenkins: 
-pom.xml - primero se ha creado un pipeline con maven y github para descargar github en jenkins master 
-ngrok - configuramos el webhook y garantizamos el funcisonamiento de este proxy porque que nuestro repositorio que está en internet a través del puerto configurado nos envíe mensajes a nuestra máquina local cada vez que se haga un push pipeline jenkins basado en el webhook configurado anterior. Se crea un pipeline para que de manera automática cada vez que hacemos un cambio o hacemos un push a nuestro repositorio se envíe un evento y ese evento sea capaz de disparar ese pipeline que tenemos construído. 
+pom.xml - primero se ha creado un pipeline con maven y github para descargar github en jenkins
 
-ngrok - configuramos el webhook y garantizamos el funcionamiento de este proxy porque que nuestro repositorio que está en internet a través del puerto configurado nos envíe mensajes a nuestra máquina local cada vez que se haga un push pipeline jenkins basado en el webhook configurado anterior.
+ngrok - configuramos el webhook y garantizamos el funcionamiento de este proxy porque nuestro repositorio que está en internet a través del puerto configurado nos envía mensajes a nuestra máquina local cada vez que se haga un push . 
 
-
+Se crea un pipeline para que de manera automática cada vez que hacemos un cambio o hacemos un push (en la rama seleccionada) a nuestro repositorio se envíe un evento y ese evento sea capaz de disparar ese pipeline que tenemos construído. 
