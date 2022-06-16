@@ -28,15 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * @author sotobotero This set of test allow check the behavior of the web layer
- * application listening like as it would do in production, sending and http
- * requests and assert if method was called and http status is the expected. We
- * are using spring MVC test framework to perfom integration tests
- * A context can be said as the running environment that is provided to the current unit of work. It may be the environment variables, instance variables, state of the classes, and so on.
- * In Spring web applications, there are two contexts that gets initialized at server startup, each of which is configured and initialized differently. One is the “Application Context” and the other is the “Web Application Context“
- *Mockito is a mocking framework, JAVA-based library that is used for effective unit testing of JAVA applications. Mockito is used to mock interfaces so that a dummy functionality can be added to a mock interface that can be used in unit testing. 
- * */
+
 @WebMvcTest(InvoiceRestController.class)
 /*allow test only http incoming request layer without start the server, 
         spring boot instatiates only the InvoiceRestController rather than the whole context*/
