@@ -24,3 +24,5 @@ pom.xml - primero se ha creado un pipeline con maven y github para descargar git
 ngrok - configuramos el webhook y garantizamos el funcionamiento de este proxy porque nuestro repositorio que está en internet a través del puerto configurado nos envía mensajes a nuestra máquina local cada vez que se haga un push . 
 
 Se crea un pipeline para que de manera automática cada vez que hacemos un cambio o hacemos un push (en la rama seleccionada) a nuestro repositorio se envíe un evento y ese evento sea capaz de disparar ese pipeline que tenemos construído. 
+
+Pipeline, que ejecute pruebas automáticas y si va bien se hace el merge
