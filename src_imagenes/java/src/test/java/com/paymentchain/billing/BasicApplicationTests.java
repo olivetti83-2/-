@@ -13,7 +13,10 @@ public class BasicApplicationTests {
 
 	@Test
 	public void contextLoads() {
+master
 		String message="Aloha!!!!!!!!!!!!!!";
+		String message="Aloha!!!!!!!!!!!!!!!!!";
+main
 		Assert.assertNotNull(message);
 	}
 
